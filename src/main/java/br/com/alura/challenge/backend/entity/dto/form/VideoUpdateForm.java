@@ -15,7 +15,7 @@ public class VideoUpdateForm {
 
     @JsonProperty("id")
     @NotNull(message = "Necessário informar o id para atualizacao")
-    private Integer id;
+    private Long id;
 
     @JsonProperty("titulo")
     @NotNull(message = "Necessário informar o titulo para atualizacao")

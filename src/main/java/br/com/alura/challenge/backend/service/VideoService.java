@@ -33,7 +33,7 @@ public class VideoService {
         return pagDeVideos;
     }
 
-    public Video encontrarPorId(Integer id) {
+    public Video encontrarPorId(Long id) {
         Optional<Video> videoOptional = repository.findById(id);
         if (videoOptional.isPresent())
             return videoOptional.get();
@@ -41,14 +41,14 @@ public class VideoService {
             throw new VideoNotFoundException("Video com id= "+ id + " nao encontrado.");
     }
 
-    @Transactional
+
     public Video salvar(Video video) {
         return repository.save(video);
     }
 
     @Transactional
     public Video atualizar(Video videoAtualizado){
-        Integer id = videoAtualizado.getId();
+        Long id = videoAtualizado.getId();
 
         Video video = encontrarPorId(id);
         video.setTitulo(videoAtualizado.getTitulo());
@@ -58,7 +58,7 @@ public class VideoService {
         return video;
     }
 
-    public void deletar(Integer id) {
+    public void deletar(Long id) {
         repository.deleteById(id);
     }
 }

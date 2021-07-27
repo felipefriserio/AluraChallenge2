@@ -18,7 +18,7 @@ public class VideoEspecificacao implements Especificacao {
     private Specification url;
 
 
-    public Specification<Video> id(Integer id) {
+    public Specification<Video> id(Long id) {
         if (id == null) return null;
         return (root, query, criteriaBuilder) ->
                 criteriaBuilder.equal(root.get("id"), id);

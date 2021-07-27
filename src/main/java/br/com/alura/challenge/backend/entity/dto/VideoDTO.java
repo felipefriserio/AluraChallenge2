@@ -14,7 +14,7 @@ public class VideoDTO {
         this.url = video.getUrl();
     }
 
-    private Integer id;
+    private Long id;
     private String titulo;
     @JsonProperty(value = "description")
     private String descricao;

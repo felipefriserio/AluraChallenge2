@@ -1,4 +1,4 @@
-package br.com.alura.challenge.backend.endpoint;
+package br.com.alura.challenge.backend.controllers;
 
 import br.com.alura.challenge.backend.entity.Video;
 import br.com.alura.challenge.backend.entity.dto.VideoDTO;
@@ -17,9 +17,9 @@ import javax.validation.Valid;
 @Slf4j
 @RestController
 @RequestMapping(value = "/videos")
-public class VideoEndpoint {
+public class VideoController {
 
-    public VideoEndpoint(VideoService service) {
+    public VideoController(VideoService service) {
         this.service = service;
     }
 
@@ -35,7 +35,7 @@ public class VideoEndpoint {
 
     @CrossOrigin
     @GetMapping(value = "/{id}")
-    public ResponseEntity<VideoDTO> pegarUm(@PathVariable("id") Integer id) {
+    public ResponseEntity<VideoDTO> pegarUm(@PathVariable("id") Long id) {
         log.debug("pegarUm - id= {}", id);
         Video video = service.encontrarPorId(id);
         return ResponseEntity.ok(new VideoDTO(video));
@@ -61,7 +61,7 @@ public class VideoEndpoint {
 
     @CrossOrigin
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<?> deletar(@PathVariable("id") Integer id) {
+    public ResponseEntity<?> deletar(@PathVariable("id") Long id) {
         log.debug("deletar - id= {}", id);
         service.deletar(id);
         return ResponseEntity.ok().build();

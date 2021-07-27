@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class VideoFiltro extends FiltroBase {
 
-    private Integer id;
+    private Long id;
     private String titulo;
     private String descricao;
     private String url;

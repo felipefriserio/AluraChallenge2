@@ -1,6 +1,5 @@
 package br.com.alura.challenge.backend.entity;
 
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +14,7 @@ public class Video {
     @Id
     @Column(name = "id", unique = true, nullable = false)
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "titulo")
     private String titulo;
