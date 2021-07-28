@@ -2,7 +2,7 @@ package br.com.alura.challenge.backend.controllers;
 
 import br.com.alura.challenge.backend.entity.Video;
 import br.com.alura.challenge.backend.entity.dto.VideoDTO;
-import br.com.alura.challenge.backend.entity.dto.VideoPaginacaoDTO;
+import br.com.alura.challenge.backend.entity.dto.paginacao.VideoPaginacaoDTO;
 import br.com.alura.challenge.backend.entity.dto.form.filter.VideoFiltro;
 import br.com.alura.challenge.backend.entity.dto.form.VideoInsertForm;
 import br.com.alura.challenge.backend.entity.dto.form.VideoUpdateForm;
@@ -28,7 +28,7 @@ public class VideoController {
     @CrossOrigin
     @GetMapping
     public ResponseEntity<VideoPaginacaoDTO> listar(VideoFiltro filtro) {
-        log.debug("listar - filtro= {}", filtro);
+        log.info("VideoController.listar - filtro= {}", filtro);
         Page<Video> videos = service.listar(filtro);
         return ResponseEntity.ok(new VideoPaginacaoDTO(videos));
     }
@@ -36,7 +36,7 @@ public class VideoController {
     @CrossOrigin
     @GetMapping(value = "/{id}")
     public ResponseEntity<VideoDTO> pegarUm(@PathVariable("id") Long id) {
-        log.debug("pegarUm - id= {}", id);
+        log.debug("VideoController.pegarUm - id= {}", id);
         Video video = service.encontrarPorId(id);
         return ResponseEntity.ok(new VideoDTO(video));
     }
@@ -44,7 +44,7 @@ public class VideoController {
     @CrossOrigin
     @PostMapping
     public ResponseEntity<VideoDTO> salvar(@RequestBody @Valid VideoInsertForm form) {
-        log.debug("salvar - form= {}", form);
+        log.debug("VideoController.salvar - form= {}", form);
         Video video = form.paraVideo();
         video = service.salvar(video);
         return ResponseEntity.ok(new VideoDTO(video));
@@ -53,7 +53,7 @@ public class VideoController {
     @CrossOrigin
     @RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH})
     public ResponseEntity<VideoDTO> atualizar(@RequestBody @Valid VideoUpdateForm form) {
-        log.debug("atualizar - form= {}", form);
+        log.debug("VideoController.atualizar - form= {}", form);
         Video video = form.paraVideo();
         video = service.atualizar(video);
         return ResponseEntity.ok(new VideoDTO(video));
@@ -61,9 +61,10 @@ public class VideoController {
 
     @CrossOrigin
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<?> deletar(@PathVariable("id") Long id) {
-        log.debug("deletar - id= {}", id);
+    public ResponseEntity<VideoDTO> deletar(@PathVariable("id") Long id) {
+        log.debug("VideoController.deletar - id= {}", id);
         service.deletar(id);
-        return ResponseEntity.ok().build();
+        String mensagem = "Video id=" + id + " deletado com sucesso";
+        return ResponseEntity.ok(new VideoDTO(mensagem));
     }
 }

@@ -1,36 +1,37 @@
-package br.com.alura.challenge.backend.exceptions;
+package br.com.alura.challenge.backend.entity.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
-import lombok.Setter;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
 @Getter
-@Setter
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class ApiException {
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class ApiExceptionDTO {
 
-    public ApiException(Exception e,
-                        HttpStatus httpStatus,
-                        boolean deveMostrarStackTrace){
+    public ApiExceptionDTO(HttpStatus httpStatus,
+                           String mensagem) {
         this.httpStatus = httpStatus;
         this.httpStatusCodigo = httpStatus.value();
-
-        if (deveMostrarStackTrace) {
-            this.mensagem = e.getMessage();
-            this.stackTrace = stackTraceToString(e);
-        }
+        this.mensagem = mensagem;
     }
 
-    @JsonProperty(value = "httpstatuscodigo")
+    public ApiExceptionDTO(HttpStatus httpStatus,
+                           Exception e){
+        this.httpStatus = httpStatus;
+        this.httpStatusCodigo = httpStatus.value();
+        this.mensagem = e.getMessage();
+        this.stackTrace = stackTraceToString(e);
+    }
+
+    @JsonProperty(value = "httpStatusCodigo")
     private final int httpStatusCodigo;
 
-    @JsonProperty(value = "httpstatus")
+    @JsonProperty(value = "httpStatus")
     private final HttpStatus httpStatus;
 
     @JsonProperty(value = "mensagem")
@@ -40,7 +41,7 @@ public class ApiException {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private final LocalDateTime data = LocalDateTime.now();
 
-    @JsonProperty(value = "stacktrace")
+    @JsonProperty(value = "stackTrace")
     private String stackTrace = null;
 
     private String stackTraceToString(Exception e) {

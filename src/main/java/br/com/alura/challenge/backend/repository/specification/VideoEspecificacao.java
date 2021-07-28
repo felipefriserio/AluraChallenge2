@@ -1,8 +1,15 @@
 package br.com.alura.challenge.backend.repository.specification;
 
+import br.com.alura.challenge.backend.entity.Categoria;
 import br.com.alura.challenge.backend.entity.Video;
 import br.com.alura.challenge.backend.entity.dto.form.filter.VideoFiltro;
 import org.springframework.data.jpa.domain.Specification;
+
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Predicate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VideoEspecificacao implements Especificacao {
 
@@ -16,6 +23,7 @@ public class VideoEspecificacao implements Especificacao {
     private Specification titulo;
     private Specification descricao;
     private Specification url;
+    private Specification categoriaId;
 
 
     public Specification<Video> id(Long id) {
@@ -42,11 +50,22 @@ public class VideoEspecificacao implements Especificacao {
                 criteriaBuilder.like(root.get("url"),  "%" + url + "%");
     }
 
+    private Specification categoriaId(Long categoriaId) {
+        if (categoriaId == null) return null;
+        return (root, query, criteriaBuilder) -> {
+            Join<Video, Categoria> join = root.join("categoria", JoinType.INNER);
+            List<Predicate> predicates = new ArrayList<>();
+            predicates.add(criteriaBuilder.equal(join.get("id"), categoriaId));
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+        };
+    }
+
     public Specification queryAnd() {
         return Specification.where(id)
                             .and(titulo)
                             .and(descricao)
-                            .and(url);
+                            .and(url)
+                            .and(categoriaId);
     }
 
     private void montar() {
@@ -54,5 +73,6 @@ public class VideoEspecificacao implements Especificacao {
         this.url       = url(filtro.getUrl());
         this.titulo    = titulo(filtro.getTitulo());
         this.descricao = descricao(filtro.getDescricao());
+        this.categoriaId = categoriaId(filtro.getCategoriaId());
     }
 }

@@ -1,6 +1,7 @@
-package br.com.alura.challenge.backend.entity.dto;
+package br.com.alura.challenge.backend.entity.dto.paginacao;
 
 import br.com.alura.challenge.backend.entity.Video;
+import br.com.alura.challenge.backend.entity.dto.VideoDTO;
 import lombok.Getter;
 import org.springframework.data.domain.Page;
 
@@ -8,9 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-public class VideoPaginacaoDTO {
+public class VideoPaginacaoDTO extends PaginacaoBase {
 
-    public VideoPaginacaoDTO(){}
     public VideoPaginacaoDTO(Page<Video> paginacao){
         setVideos(paginacao.getContent());
 
@@ -21,12 +21,8 @@ public class VideoPaginacaoDTO {
     }
 
     private final List<VideoDTO> videos = new ArrayList<>();
-    private Long totalDeItens;
-    private Integer paginaAtual;
-    private Integer totalDePaginas;
-    private Integer quantidadeDeItensPorPagina;
 
-    public void setVideos(List<Video> videos) {
+    private void setVideos(List<Video> videos) {
         for ( Video video : videos ) {
             VideoDTO dto = new VideoDTO(video);
             this.videos.add(dto);

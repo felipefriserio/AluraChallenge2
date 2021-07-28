@@ -1,6 +1,6 @@
 package br.com.alura.challenge.backend.entity.dto.form;
 
-import br.com.alura.challenge.backend.entity.Video;
+import br.com.alura.challenge.backend.entity.Categoria;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @JsonAutoDetect
-public class VideoUpdateForm {
+public class CategoriaUpdateForm {
 
     @JsonProperty("id")
     @NotNull(message = "Necessário informar o id para atualizacao")
@@ -22,31 +22,25 @@ public class VideoUpdateForm {
     @NotEmpty(message = "Necessário informar o titulo para atualizacao")
     private String titulo;
 
-    @JsonProperty("descricao")
-    @NotEmpty(message = "Necessário informar a descricao para atualizacao")
-    private String descricao;
-
-    @JsonProperty("url")
-    @NotEmpty(message = "Necessário informar a url id para atualizacao")
-    private String url;
+    @JsonProperty("cor")
+    @NotEmpty(message = "Necessário informar a cor para atualizacao")
+    private String cor;
 
     @Override
     public String toString() {
-        return "VideoUpdateForm{" +
+        return "CategoriaUpdateForm{" +
                 "id=" + id +
                 ", titulo='" + titulo + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", url='" + url + '\'' +
+                ", cor='" + cor + '\'' +
                 '}';
     }
 
-    public Video paraVideo() {
-        Video video = new Video();
-        video.setId(this.id);
-        video.setDescricao(this.descricao);
-        video.setTitulo(this.titulo);
-        video.setUrl(this.url);
+    public Categoria paraCategoria() {
+        Categoria categoria = new Categoria();
+        categoria.setId(id);
+        categoria.setTitulo(titulo);
+        categoria.setCor(cor);
 
-        return video;
+        return categoria;
     }
 }

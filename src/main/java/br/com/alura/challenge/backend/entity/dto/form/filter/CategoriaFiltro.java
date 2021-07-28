@@ -5,24 +5,19 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class VideoFiltro extends FiltroBase {
-    public VideoFiltro(Long categoriaId) {
-        this.categoriaId = categoriaId;
-    }
+public class CategoriaFiltro extends FiltroBase {
 
     private Long id;
     private String titulo;
-    private String descricao;
-    private String url;
+    private String cor;
     private Long categoriaId;
 
     @Override
     public String toString() {
-        return "VideoFiltro{" +
+        return "CategoriaFiltro{" +
                 "id=" + id +
                 ", titulo='" + titulo + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", url='" + url + '\'' +
+                ", cor='" + cor + '\'' +
                 ", categoriaId=" + categoriaId +
                 '}';
     }
