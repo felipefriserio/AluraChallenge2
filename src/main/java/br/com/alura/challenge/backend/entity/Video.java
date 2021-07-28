@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
@@ -28,7 +29,7 @@ public class Video {
 
     @Id
     @Column(name = "id", unique = true, nullable = false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty
@@ -42,4 +43,18 @@ public class Video {
     @URL
     @Column(name = "url")
     private String url;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Categoria categoria = new Categoria();
+
+    @Override
+    public String toString() {
+        return "Video{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", url='" + url + '\'' +
+                ", categoria=" + categoria +
+                '}';
+    }
 }
