@@ -36,6 +36,7 @@ public class ValidaCategoria implements ValidacaoParaIncluirVideo {
         if (categoria == null )
             return true;
         else
-            return categoria.getId() == null;
+            return categoria.getId() == null ||
+                   categoria.getId() == 0l;
     }
 }
