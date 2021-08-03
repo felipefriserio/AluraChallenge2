@@ -36,9 +36,7 @@ public class CategoriaService {
         Specification queryAnd = categoriaEspecificacao.queryAnd();
 
         Pageable paginacao = filtro.getPaginacao();
-        Page<Categoria> paginaDeCategorias = repository.findAll(queryAnd, paginacao);
-
-        return paginaDeCategorias;
+        return repository.findAll(queryAnd, paginacao);
     }
 
     public Categoria encontrarPorId(Long id) {

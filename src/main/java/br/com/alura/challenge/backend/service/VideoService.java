@@ -36,9 +36,7 @@ public class VideoService {
         Specification queryAnd = videoEspecificacao.queryAnd();
 
         Pageable paginacao = filtro.getPaginacao();
-        Page<Video> paginaDeVideos = repository.findAll(queryAnd, paginacao);
-
-        return paginaDeVideos;
+        return repository.findAll(queryAnd, paginacao);
     }
 
     public Video encontrarPorId(Long id) {
