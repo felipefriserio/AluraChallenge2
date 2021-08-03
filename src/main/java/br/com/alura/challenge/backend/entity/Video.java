@@ -54,7 +54,6 @@ public class Video {
                 ", titulo='" + titulo + '\'' +
                 ", descricao='" + descricao + '\'' +
                 ", url='" + url + '\'' +
-                ", categoria=" + categoria +
                 '}';
     }
 }
