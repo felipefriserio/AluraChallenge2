@@ -14,11 +14,11 @@ import javax.validation.constraints.NotEmpty;
 public class CategoriaInsertForm {
 
     @JsonProperty("titulo")
-    @NotEmpty(message = "O titulo e obrigatorio")
+    @NotEmpty(message = "titulo obrigatorio")
     private String titulo;
 
     @JsonProperty("cor")
-    @NotEmpty(message = "A cor e obrigatoria")
+    @NotEmpty(message = "cor obrigatoria")
     private String cor;
 
     @Override

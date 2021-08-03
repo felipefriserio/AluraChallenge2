@@ -16,20 +16,20 @@ import javax.validation.constraints.NotEmpty;
 public class VideoInsertForm {
 
     @JsonProperty("titulo")
-    @NotEmpty(message = "Necessário informar o titulo do video")
+    @NotEmpty(message = "titulo obrigatorio")
     private String titulo;
 
     @JsonProperty("descricao")
-    @NotEmpty(message = "Necessário informar a descricao do video")
+    @NotEmpty(message = "descricao obrigatorio")
     private String descricao;
 
     @JsonProperty("url")
-    @URL(message = "Necessário informar uma url valida")
-    @NotEmpty(message = "Necessário informar a url do video")
+    @URL(message = "url invalida")
+    @NotEmpty(message = "url obrigatorio")
     private String url;
 
     @JsonProperty("categoriaId")
-    private Long categoriaId;
+    private Long categoriaId = 0l;
 
     @Override
     public String toString() {

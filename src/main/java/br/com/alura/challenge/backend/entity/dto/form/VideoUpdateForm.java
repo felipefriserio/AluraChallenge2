@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.URL;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -15,19 +16,20 @@ import javax.validation.constraints.NotNull;
 public class VideoUpdateForm {
 
     @JsonProperty("id")
-    @NotNull(message = "Necessário informar o id para atualizacao")
+    @NotNull(message = "id obrigatorio")
     private Long id;
 
     @JsonProperty("titulo")
-    @NotEmpty(message = "Necessário informar o titulo para atualizacao")
+    @NotEmpty(message = "titulo obrigatorio")
     private String titulo;
 
     @JsonProperty("descricao")
-    @NotEmpty(message = "Necessário informar a descricao para atualizacao")
+    @NotEmpty(message = "descricao obrigatorio")
     private String descricao;
 
     @JsonProperty("url")
-    @NotEmpty(message = "Necessário informar a url id para atualizacao")
+    @URL(message = "url invalida")
+    @NotEmpty(message = "url obrigatorio")
     private String url;
 
     @Override

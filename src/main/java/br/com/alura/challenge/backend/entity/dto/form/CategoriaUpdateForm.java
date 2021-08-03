@@ -15,15 +15,15 @@ import javax.validation.constraints.NotNull;
 public class CategoriaUpdateForm {
 
     @JsonProperty("id")
-    @NotNull(message = "Necessário informar o id para atualizacao")
+    @NotNull(message = "id obrigatorio")
     private Long id;
 
     @JsonProperty("titulo")
-    @NotEmpty(message = "Necessário informar o titulo para atualizacao")
+    @NotEmpty(message = "titulo obrigatorio")
     private String titulo;
 
     @JsonProperty("cor")
-    @NotEmpty(message = "Necessário informar a cor para atualizacao")
+    @NotEmpty(message = "cor obrigatoria")
     private String cor;
 
     @Override
