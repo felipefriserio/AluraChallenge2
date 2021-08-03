@@ -3,6 +3,7 @@ package br.com.alura.challenge.backend.controllers;
 import br.com.alura.challenge.backend.entity.Categoria;
 import br.com.alura.challenge.backend.entity.Video;
 import br.com.alura.challenge.backend.entity.dto.CategoriaDTO;
+import br.com.alura.challenge.backend.entity.dto.VideoDTO;
 import br.com.alura.challenge.backend.entity.dto.form.CategoriaInsertForm;
 import br.com.alura.challenge.backend.entity.dto.form.CategoriaUpdateForm;
 import br.com.alura.challenge.backend.entity.dto.form.filter.CategoriaFiltro;
@@ -15,8 +16,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 
 @Slf4j
 @RestController
@@ -59,11 +62,13 @@ public class CategoriaController {
 
     @CrossOrigin
     @PostMapping
-    public ResponseEntity<CategoriaDTO> salvar(@RequestBody @Valid CategoriaInsertForm form) {
+    public ResponseEntity<CategoriaDTO> salvar(@RequestBody @Valid CategoriaInsertForm form, UriComponentsBuilder uriBuilder) {
         log.debug("CategoriaController.salvar - form= {}", form);
         Categoria categoria = form.paraCategoria();
         categoria = service.salvar(categoria);
-        return ResponseEntity.ok(new CategoriaDTO(categoria));
+
+        URI uri = uriBuilder.path("/categorias/{id}").buildAndExpand(categoria.getId()).toUri();
+        return ResponseEntity.created(uri).body(new CategoriaDTO(categoria));
     }
 
     @CrossOrigin

@@ -11,8 +11,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.net.URI;
 
 @Slf4j
 @RestController
@@ -43,11 +45,13 @@ public class VideoController {
 
     @CrossOrigin
     @PostMapping
-    public ResponseEntity<VideoDTO> salvar(@RequestBody @Valid VideoInsertForm form) {
+    public ResponseEntity<VideoDTO> salvar(@RequestBody @Valid VideoInsertForm form, UriComponentsBuilder uriBuilder) {
         log.debug("VideoController.salvar - form= {}", form);
         Video video = form.paraVideo();
         video = service.salvar(video);
-        return ResponseEntity.ok(new VideoDTO(video));
+
+        URI uri = uriBuilder.path("/videos/{id}").buildAndExpand(video.getId()).toUri();
+        return ResponseEntity.created(uri).body(new VideoDTO(video));
     }
 
     @CrossOrigin
