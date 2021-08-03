@@ -14,7 +14,7 @@ public abstract class FiltroBase {
     private Sort.Direction direcao = Sort.Direction.ASC;
     private String campoOrdenacao = "id";
     private int pagina;
-    private int quantidadeDeItensPorPagina = 10;
+    private int quantidadeDeItensPorPagina = 5;
     private final int LIMITE_ITENS_PAGINACAO = 100;
 
     public Pageable getPaginacao() {
