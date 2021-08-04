@@ -1,10 +1,12 @@
 package br.com.alura.challenge.backend.entity.dto.form.filter;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class VideoFiltro extends FiltroBase {
     public VideoFiltro(Long categoriaId) {
         this.categoriaId = categoriaId;
