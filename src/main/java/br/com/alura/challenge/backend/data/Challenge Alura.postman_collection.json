@@ -6,474 +6,805 @@
 	},
 	"item": [
 		{
-			"name": "tests",
+			"name": "Tests",
 			"item": [
 				{
-					"name": "Deletar video test",
-					"event": [
+					"name": "Video",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"deletar um video test\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/videos/1",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"videos",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Deletar video inexistente test",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"deletar um video inexistente test\", function () {",
-									"    pm.response.to.have.status(500);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/videos/-1",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"videos",
-								"-1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Salvar video test",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"salvar um video test\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"titulo\": \"Titulo inserido\",\n    \"url\": \"http://linkinserido.com.br\",\n    \"descricao\": \"descricao\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "Salvar video test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"salvar um video test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/videos",
-							"host": [
-								"{{url}}"
 							],
-							"path": [
-								"videos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Salvar video sem titulo test",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"salvar um video sem titulo test\", function () {",
-									"    pm.response.to.have.status(400);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"url\": \"http://linkinserido.com.br\",\n    \"descricao\": \"descricao\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"titulo\": \"Titulo inserido\",\n    \"url\": \"http://linkinserido.com.br\",\n    \"descricao\": \"descricao\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/videos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{url}}/videos",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"videos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Salvar video sem descricao test",
-					"event": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"salvar um video sem descricao test\", function () {",
-									"    pm.response.to.have.status(400);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"titulo\" : \"titulo qualquer\",\n    \"url\": \"http://link.com.br\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "Salvar video sem titulo test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"salvar um video sem titulo test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/videos",
-							"host": [
-								"{{url}}"
 							],
-							"path": [
-								"videos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Salvar video sem url test",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"salvar um video sem url test\", function () {",
-									"    pm.response.to.have.status(400);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"titulo\" : \"titulo qualquer\",\n    \"descricao\" : \"descricao\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"url\": \"http://linkinserido.com.br\",\n    \"descricao\": \"descricao\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/videos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{url}}/videos",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"videos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Listar videos test",
-					"event": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"listar videos test\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/videos/",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"videos",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pegar um video test",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"pegar um video test\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/videos/2",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"videos",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Pegar um video inexistente test",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"pegar um video inexistente test\", function () {",
-									"    pm.response.to.have.status(404);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/videos/-1",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"videos",
-								"-1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Atualizar video test",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"atualizar um video test\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"id\" : 2,\n    \"titulo\" : \"titulo qualquer\",\n    \"descricao\" : \"descricao\",\n    \"url\" : \"url qualquer\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "Salvar video sem descricao test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"salvar um video sem descricao test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/videos",
-							"host": [
-								"{{url}}"
 							],
-							"path": [
-								"videos"
-							]
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"titulo\" : \"titulo qualquer\",\n    \"url\": \"http://link.com.br\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/videos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Salvar video sem url test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"salvar um video sem url test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"titulo\" : \"titulo qualquer\",\n    \"descricao\" : \"descricao\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/videos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar videos test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"listar videos test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/videos/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Pegar um video test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"pegar um video test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/videos/2",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Pegar um video inexistente test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"pegar um video inexistente test\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/videos/-1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos",
+										"-1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar video test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"atualizar um video test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\" : 2,\n    \"titulo\" : \"titulo qualquer\",\n    \"descricao\" : \"descricao\",\n    \"url\" : \"http://linkqualquer.com.br\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/videos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar video sem titulo test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"atualizar um video sem titulo test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\" : 1,\n    \"descricao\" : \"descricao\",\n    \"url\" : \"http://linkqualquer.com.br\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/videos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar video sem descricao test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"atualizar um video sem descricao test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\" : 1,\n    \"titulo\" : \"titulo 1212\",\n    \"url\" : \"http://linkqualquer.com.br\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/videos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar video sem url test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"atualizar um video sem url test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\" : 1,\n    \"descricao\" : \"descricao\",\n    \"titulo\" : \"titulo qualquer\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/videos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deletar video test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"deletar um video test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/videos/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deletar video inexistente test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"deletar um video inexistente test\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/videos/-1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos",
+										"-1"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "Atualizar video sem titulo test",
-					"event": [
+					"name": "Categoria",
+					"item": []
+				}
+			]
+		},
+		{
+			"name": "Requisicoes",
+			"item": [
+				{
+					"name": "Video",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"atualizar um video sem titulo test\", function () {",
-									"    pm.response.to.have.status(400);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"id\" : 1,\n    \"descricao\" : \"descricao\",\n    \"url\" : \"url qualquer\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "Pegar um video",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/videos",
-							"host": [
-								"{{url}}"
 							],
-							"path": [
-								"videos"
-							]
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/videos/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar videos",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/videos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Pegar um video pelo titulo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/videos?titulo=video",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos"
+									],
+									"query": [
+										{
+											"key": "titulo",
+											"value": "video"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Salvar video",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"titulo\": \"Titulo inserido\",\n    \"url\": \"http://linkinserido.com.br\",\n    \"descricao\": \"descricao\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/videos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar video",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\" : 1,\n    \"titulo\" : \"titulo qualquer\",\n    \"descricao\" : \"descricao\",\n    \"url\" : \"url qualquer\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/videos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deletar video",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/videos/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"videos",
+										"1"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "Atualizar video sem descricao test",
-					"event": [
+					"name": "Categoria",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"atualizar um video sem descricao test\", function () {",
-									"    pm.response.to.have.status(400);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"id\" : 1,\n    \"descricao\" : \"descricao\",\n    \"url\" : \"url qualquer\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "Pegar uma categoria",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/categorias/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"categorias",
+										"1"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{url}}/videos",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"videos"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Atualizar video sem url test",
-					"event": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"atualizar um video sem url test\", function () {",
-									"    pm.response.to.have.status(400);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"id\" : 1,\n    \"descricao\" : \"descricao\",\n    \"titulo\" : \"titulo qualquer\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"name": "Listar categorias",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/categorias",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"categorias"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{url}}/videos",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"videos"
-							]
+						{
+							"name": "Listar videos pela categoria",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/categorias/1/videos",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"categorias",
+										"1",
+										"videos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Salvar categoria",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"titulo\": \"Livre 2\",\n    \"cor\": \"#111111\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/categorias",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"categorias"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar categoria",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": 2,\n    \"titulo\": \"Atualizado\",\n    \"cor\": \"#333333\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/categorias",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"categorias"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Deletar categoria",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/categorias/2",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"categorias",
+										"2"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		}
