@@ -6,7 +6,7 @@ import br.com.alura.challenge.backend.exceptions.EntidadeNaoEncontradaException;
 import br.com.alura.challenge.backend.repository.VideoRepository;
 import br.com.alura.challenge.backend.repository.specification.Especificacao;
 import br.com.alura.challenge.backend.repository.specification.VideoEspecificacao;
-import br.com.alura.challenge.backend.service.validacoes.video.incluir.ValidacaoParaIncluirVideo;
+import br.com.alura.challenge.backend.service.validacoes.video.ValidacaoVideo;
 import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,13 +23,14 @@ import java.util.Optional;
 public class VideoService {
 
     public VideoService(VideoRepository repository,
-                        List<ValidacaoParaIncluirVideo> listaDeValidacoesParaIncluir) {
+                        List<ValidacaoVideo> listaDeValidacoes) {
         this.repository = repository;
-        this.listaDeValidacoesParaIncluir = listaDeValidacoesParaIncluir;
+        this.listaDeValidacoes = listaDeValidacoes;
     }
 
-    private List<ValidacaoParaIncluirVideo> listaDeValidacoesParaIncluir;
     private VideoRepository repository;
+    private List<ValidacaoVideo> listaDeValidacoes;
+
 
     public Page<Video> listar(VideoFiltro filtro) {
         Especificacao videoEspecificacao = new VideoEspecificacao(filtro);
@@ -40,6 +41,8 @@ public class VideoService {
     }
 
     public Video encontrarPorId(Long id) {
+        if (id == null) throw new IllegalArgumentException("id nulo");
+
         Optional<Video> videoOptional = repository.findById(id);
         if (videoOptional.isPresent())
             return videoOptional.get();
@@ -49,20 +52,27 @@ public class VideoService {
 
     @Transactional
     public Video salvar(Video video) {
-        for (ValidacaoParaIncluirVideo validacao : listaDeValidacoesParaIncluir) {
+        for (ValidacaoVideo validacao : listaDeValidacoes) {
             validacao.validar(video);
         }
         return repository.save(video);
     }
 
     @Transactional
-    public Video atualizar(Video videoAtualizado){
+    public Video atualizar(Video videoAtualizado) {
+        if (videoAtualizado == null) throw new IllegalArgumentException("video nulo");
+
+        for (ValidacaoVideo validacao : listaDeValidacoes) {
+            validacao.validar(videoAtualizado);
+        }
+
         Long id = videoAtualizado.getId();
 
         Video video = encontrarPorId(id);
         video.setTitulo(videoAtualizado.getTitulo());
         video.setDescricao(videoAtualizado.getDescricao());
         video.setUrl(videoAtualizado.getUrl());
+        video.setCategoria(videoAtualizado.getCategoria());
 
         return video;
     }
@@ -78,7 +88,6 @@ public class VideoService {
 
     @PostConstruct
     private void ordenarListaDeValidacoesParaExecucao() {
-        Collections.sort(listaDeValidacoesParaIncluir,
-                AnnotationAwareOrderComparator.INSTANCE);
-    }
+        Collections.sort(listaDeValidacoes, AnnotationAwareOrderComparator.INSTANCE);
+     }
 }

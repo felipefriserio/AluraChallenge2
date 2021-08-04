@@ -6,7 +6,7 @@ import br.com.alura.challenge.backend.exceptions.EntidadeNaoEncontradaException;
 import br.com.alura.challenge.backend.repository.CategoriaRepository;
 import br.com.alura.challenge.backend.repository.specification.CategoriaEspecificacao;
 import br.com.alura.challenge.backend.repository.specification.Especificacao;
-import br.com.alura.challenge.backend.service.validacoes.categoria.incluir.ValidacaoParaIncluirCategoria;
+import br.com.alura.challenge.backend.service.validacoes.categoria.ValidacaoCategoria;
 import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,13 +23,13 @@ import java.util.Optional;
 public class CategoriaService {
 
     public CategoriaService(CategoriaRepository repository,
-                            List<ValidacaoParaIncluirCategoria> listaDeValidacoesParaIncluir) {
+                            List<ValidacaoCategoria> listaDeValidacoes) {
         this.repository = repository;
-        this.listaDeValidacoesParaIncluir = listaDeValidacoesParaIncluir;
+        this.listaDeValidacoes = listaDeValidacoes;
     }
 
     private CategoriaRepository repository;
-    private List<ValidacaoParaIncluirCategoria> listaDeValidacoesParaIncluir;
+    private List<ValidacaoCategoria> listaDeValidacoes;
 
     public Page<Categoria> listar(CategoriaFiltro filtro) {
         Especificacao categoriaEspecificacao = new CategoriaEspecificacao(filtro);
@@ -40,6 +40,8 @@ public class CategoriaService {
     }
 
     public Categoria encontrarPorId(Long id) {
+        if (id == null) throw new IllegalArgumentException("id nulo");
+
         Optional<Categoria> categoriaOptional = repository.findById(id);
         if (categoriaOptional.isPresent())
             return categoriaOptional.get();
@@ -49,13 +51,17 @@ public class CategoriaService {
 
     @Transactional
     public Categoria salvar(Categoria categoria) {
-        for (ValidacaoParaIncluirCategoria validacao : listaDeValidacoesParaIncluir) {
+        for (ValidacaoCategoria validacao : listaDeValidacoes) {
             validacao.validar(categoria);
         }
         return repository.save(categoria);
     }
 
     public Categoria atualizar(Categoria categoriaAtualizada) {
+        for (ValidacaoCategoria validacao : listaDeValidacoes) {
+            validacao.validar(categoriaAtualizada);
+        }
+
         Long id = categoriaAtualizada.getId();
 
         Categoria categoria = encontrarPorId(id);
@@ -76,7 +82,6 @@ public class CategoriaService {
 
     @PostConstruct
     private void ordenarListaDeValidacoesParaExecucao() {
-        Collections.sort(listaDeValidacoesParaIncluir,
-                AnnotationAwareOrderComparator.INSTANCE);
-    }
+        Collections.sort(listaDeValidacoes, AnnotationAwareOrderComparator.INSTANCE);
+     }
 }
