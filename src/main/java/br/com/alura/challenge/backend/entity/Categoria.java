@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Getter
@@ -52,5 +53,18 @@ public class Categoria {
                 ", titulo='" + titulo + '\'' +
                 ", cor='" + cor + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Categoria categoria = (Categoria) o;
+        return id.equals(categoria.id) && titulo.equals(categoria.titulo) && cor.equals(categoria.cor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, titulo, cor);
     }
 }

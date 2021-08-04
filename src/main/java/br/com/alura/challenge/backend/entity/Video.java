@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -46,6 +47,19 @@ public class Video {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Categoria categoria = new Categoria();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Video video = (Video) o;
+        return id.equals(video.id) && titulo.equals(video.titulo) && descricao.equals(video.descricao) && url.equals(video.url) && Objects.equals(categoria, video.categoria);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, titulo, descricao, url, categoria);
+    }
 
     @Override
     public String toString() {
