@@ -1,4 +1,4 @@
-package br.com.alura.challenge.backend.service.validacoes.video.incluir;
+package br.com.alura.challenge.backend.service.validacoes.video;
 
 import br.com.alura.challenge.backend.entity.Categoria;
 import br.com.alura.challenge.backend.entity.Video;
@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ValidaCategoria implements ValidacaoParaIncluirVideo {
+public class ValidaCategoriaNoVideo implements ValidacaoVideo {
 
-    public ValidaCategoria(CategoriaService categoriaService) {
+    public ValidaCategoriaNoVideo(CategoriaService categoriaService) {
         this.categoriaService = categoriaService;
     }
 
@@ -32,11 +32,8 @@ public class ValidaCategoria implements ValidacaoParaIncluirVideo {
 
     private boolean seVideoNaoTemCategoria(Video video) {
         Categoria categoria = video.getCategoria();
-
-        if (categoria == null )
-            return true;
-        else
-            return categoria.getId() == null ||
-                   categoria.getId() == 0l;
+        return (categoria == null ||
+                categoria.getId() == null ||
+                categoria.getId() == 0l);
     }
 }

@@ -1,7 +1,8 @@
-package br.com.alura.challenge.backend.service.validacoes.categoria.incluir;
+package br.com.alura.challenge.backend.service.validacoes.categoria;
 
 import br.com.alura.challenge.backend.entity.Categoria;
 import br.com.alura.challenge.backend.exceptions.ValidacaoException;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
@@ -10,13 +11,12 @@ import java.util.List;
 
 @Order(value = 1)
 @Service
-public class ValidaPreenchimentoDaCategoria implements ValidacaoParaIncluirCategoria {
+public class ValidaPreenchimentoDaCategoria implements ValidacaoCategoria {
 
-    @Override
     public void validar(Categoria categoria) {
         if (categoria == null){
-            String mensagem = "Categoria nao pode ser nula na inclusao";
-            throw new ValidacaoException(mensagem);
+            String mensagem = "categoria nula";
+            throw new IllegalArgumentException(mensagem);
         }
 
         List<String> errosDeValidacao  = validarCampos(categoria);
@@ -30,10 +30,10 @@ public class ValidaPreenchimentoDaCategoria implements ValidacaoParaIncluirCateg
     private List<String> validarCampos(Categoria categoria) {
         List<String> errosDeValidacao = new ArrayList<>();
 
-        if (validarSeTextoENuloOuVazio(categoria.getTitulo()))
+        if (StringUtils.isEmpty(categoria.getTitulo()))
             errosDeValidacao.add("titulo vazio");
 
-        if (validarSeTextoENuloOuVazio(categoria.getCor()))
+        if (StringUtils.isEmpty(categoria.getCor()))
             errosDeValidacao.add("cor vazia");
 
         return errosDeValidacao;
