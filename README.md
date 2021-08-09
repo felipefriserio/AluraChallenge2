@@ -45,4 +45,4 @@ https://www.youtube.com/watch?v=UiQw2HM4DtM&ab_channel=AluraCursosOnline
 
 
 <!-- MARKDOWN LINKS-->
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[linkedin-url]: https://www.linkedin.com/in/felipe-riserio/
