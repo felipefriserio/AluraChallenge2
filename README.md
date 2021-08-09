@@ -1,3 +1,7 @@
+<!-- PROJECT SHIELDS -->
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
+
 <div align="center">
 	<img src="https://github.com/felipefriserio/AluraChallenge2/blob/main/src/main/resources/static/alura_logo.svg" alt="logo">
   	<h1>Alura Challenge - Backend</h1>
@@ -6,12 +10,11 @@
 	<p align="center">
 		<a href="#desafios">Desafios</a> •
 	</p>
-	<h2 align="center">🚧  Em construção...  🚧</h2>
 </div>Projeto para o Alura Challenge - BackEnd
 
-#Desafios
+## Desafios
 | Semana | Tarefa | Finalizado |
-| :---   | :---  | :---:  |
+| :---:   | :---  | :---:  |
 | 1 | Banco de dados - Armazenar no banco de dados as seguintes informações sobre os vídeos. id, titulo,descricao e url | OK |
 | 1 | Testes no Postman - Verificar Status code das requisições GET, POST, PUT e DELETE | OK |
 | 1 | Regra de negócio - Todos os campos de vídeos devem ser obrigatórios e validados. | OK |                                         
@@ -39,3 +42,7 @@
 
 Vídeo da semana 1 : 
 https://www.youtube.com/watch?v=UiQw2HM4DtM&ab_channel=AluraCursosOnline
+
+
+<!-- MARKDOWN LINKS-->
+[linkedin-url]: https://linkedin.com/in/othneildrew
