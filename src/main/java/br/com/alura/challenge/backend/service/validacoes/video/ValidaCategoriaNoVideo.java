@@ -20,20 +20,21 @@ public class ValidaCategoriaNoVideo implements ValidacaoVideo {
 
     @Override
     public void validar(Video video) {
-        atualizarParaCategoriaPadraoSeNecessario(video);
+        preencherComCategoriaPadraoSeNecessario(video);
+        Long idCategoria = video.getCategoria().getId();
+        Categoria categoria = categoriaService.encontrarPorId(idCategoria);
+        video.setCategoria(categoria);
     }
 
-    private void atualizarParaCategoriaPadraoSeNecessario(Video video) {
-        if (seVideoNaoTemCategoria(video)){
-            Categoria categoriaPadrao = categoriaService.encontrarPorId(idCategoriaPadrao);
-            video.setCategoria(categoriaPadrao);
-        }
-    }
-
-    private boolean seVideoNaoTemCategoria(Video video) {
+    private void preencherComCategoriaPadraoSeNecessario(Video video) {
         Categoria categoria = video.getCategoria();
-        return (categoria == null ||
-                categoria.getId() == null ||
-                categoria.getId() == 0l);
+        if (naoTemCategoria(categoria))
+            video.setCategoria(new Categoria(idCategoriaPadrao));
+    }
+
+    private boolean naoTemCategoria(Categoria categoria) {
+        return categoria == null ||
+               categoria.getId() == null ||
+               categoria.getId() == 0l;
     }
 }

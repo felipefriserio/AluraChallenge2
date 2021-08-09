@@ -34,5 +34,13 @@ public class DatabaseStartup {
         Video video = new Video("video","descricao do video", "http://www.site.com.br", categoria);
         videoService.salvar(video);
         log.info("salvou video {}", video);
+
+       /* Usuario usuario = new Usuario("felipefriserio@gmail.com", "admin");
+        usuarioService.salvar(usuario);
+
+        Perfil perfil = new Perfil("PADRAO");
+        Perfil perfilGestor = new Perfil("ADM");
+        perfilRepository.save(perfil);
+        perfilRepository.save(perfilGestor);*/
     }
 }

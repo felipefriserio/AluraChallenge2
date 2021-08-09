@@ -1,16 +1,20 @@
-package br.com.alura.challenge.backend.exceptions.handler;
+package br.com.alura.challenge.backend.config;
 
 import br.com.alura.challenge.backend.entity.dto.ApiExceptionDTO;
+import br.com.alura.challenge.backend.exceptions.AutenticacaoException;
 import br.com.alura.challenge.backend.exceptions.EntidadeNaoEncontradaException;
 import br.com.alura.challenge.backend.exceptions.ValidacaoException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import java.nio.file.AccessDeniedException;
 
 @Slf4j
 @ControllerAdvice
@@ -50,7 +54,28 @@ public class ChallengeExceptionHandler {
         return new ResponseEntity<>(apiExceptionDTO, httpStatus);
     }
 
-   @ExceptionHandler(value = {RuntimeException.class})
+
+    @ExceptionHandler(value = {AutenticacaoException.class})
+    public ResponseEntity<Object> tratarExcecao(AutenticacaoException e) {
+        HttpStatus httpStatus = HttpStatus.FORBIDDEN;
+        ApiExceptionDTO apiExceptionDTO = gerarApiExceptionDTO(e, httpStatus, e.getMessage());
+        log.error("AutenticacaoException - ", e);
+        return new ResponseEntity<>(apiExceptionDTO, httpStatus);
+    }
+
+
+    @ExceptionHandler(value = {AccessDeniedException.class})
+    public ResponseEntity<Object> tratarExcecao(AccessDeniedException e) {
+        HttpStatus httpStatus = HttpStatus.FORBIDDEN;
+        ApiExceptionDTO apiExceptionDTO = gerarApiExceptionDTO(e, httpStatus, "teste");
+        log.error("AccessDeniedException - ", e);
+        return new ResponseEntity<>(apiExceptionDTO, httpStatus);
+    }
+
+
+
+
+    @ExceptionHandler(value = {RuntimeException.class})
    public ResponseEntity<Object> tratarExcecao(RuntimeException e) {
        HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
        ApiExceptionDTO apiExceptionDTO = gerarApiExceptionDTO(e, httpStatus, "");

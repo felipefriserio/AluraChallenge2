@@ -27,13 +27,15 @@ public class ValidaCategoriaNoVideoTest {
 
     @Test
     void deveRetornarMesmoVideoRecebido() {
+        when(service.encontrarPorId(any(Long.class))).thenReturn(mockarUmaCategoria());
+
         Video video = mockarVideo();
         validaCategoria.validar(video);
 
         assertNotNull(video);
         assertEquals(mockarVideo(), video);
         assertEquals(mockarVideo().getCategoria(), video.getCategoria());
-        verify(service, times(0)).encontrarPorId(any(Long.class));
+        verify(service, times(1)).encontrarPorId(any(Long.class));
     }
 
     @Test

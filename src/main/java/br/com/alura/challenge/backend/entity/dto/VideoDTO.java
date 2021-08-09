@@ -4,8 +4,13 @@ import br.com.alura.challenge.backend.entity.Categoria;
 import br.com.alura.challenge.backend.entity.Video;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
+@NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class VideoDTO {
 
@@ -30,4 +35,12 @@ public class VideoDTO {
     private String descricao;
     private String url;
     private String mensagem;
+
+    public List<VideoDTO> listarVideos(List<Video> videos){
+        List<VideoDTO> videosDto = new ArrayList<>();
+        for (Video video : videos) {
+            videosDto.add(new VideoDTO(video));
+        }
+        return videosDto;
+    }
 }

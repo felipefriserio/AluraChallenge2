@@ -15,6 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -41,6 +42,14 @@ public class VideoController {
         log.debug("VideoController.pegarUm - id= {}", id);
         Video video = service.encontrarPorId(id);
         return ResponseEntity.ok(new VideoDTO(video));
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/free")
+    public ResponseEntity<List<VideoDTO>> listarFilmesGratuitos() {
+        log.debug("VideoController.listarFilmesGratuitos");
+        List<Video> videosGratuitos = service.listarFilmesGratuitos();
+        return ResponseEntity.ok(new VideoDTO().listarVideos(videosGratuitos));
     }
 
     @CrossOrigin
