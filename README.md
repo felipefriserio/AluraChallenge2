@@ -45,4 +45,5 @@ https://www.youtube.com/watch?v=UiQw2HM4DtM&ab_channel=AluraCursosOnline
 
 
 <!-- MARKDOWN LINKS-->
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/felipe-riserio/
