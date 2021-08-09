@@ -36,7 +36,7 @@ public class Categoria {
 
     @Id
     @Column(name = "id", unique = true, nullable = false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty

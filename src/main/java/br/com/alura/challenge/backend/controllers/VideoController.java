@@ -1,6 +1,7 @@
 package br.com.alura.challenge.backend.controllers;
 
 import br.com.alura.challenge.backend.entity.Video;
+import br.com.alura.challenge.backend.entity.dto.RelatorioFilmesPorCategoriaDTO;
 import br.com.alura.challenge.backend.entity.dto.VideoDTO;
 import br.com.alura.challenge.backend.entity.dto.paginacao.VideoPaginacaoDTO;
 import br.com.alura.challenge.backend.entity.dto.form.filter.VideoFiltro;

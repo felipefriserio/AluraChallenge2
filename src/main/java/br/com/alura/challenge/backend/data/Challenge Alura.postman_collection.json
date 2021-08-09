@@ -1279,6 +1279,29 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Relatorio",
+					"item": [
+						{
+							"name": "Filmes por categoria",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/relatorios/categorias",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"relatorios",
+										"categorias"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}

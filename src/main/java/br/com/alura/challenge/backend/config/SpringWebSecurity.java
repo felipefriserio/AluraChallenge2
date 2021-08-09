@@ -39,6 +39,15 @@ public class SpringWebSecurity extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
+    private static final String[] AUTH_WHITELIST = {
+            // SWAGGER
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            // H2
+            "/h2-console",
+            "/h2-console/**"
+    };
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         if (ehAmbienteDeTeste())
@@ -55,8 +64,8 @@ public class SpringWebSecurity extends WebSecurityConfigurerAdapter {
         http
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                    .csrf().disable()
                     .authorizeRequests()
+                    .antMatchers(AUTH_WHITELIST).permitAll()
                     .antMatchers(HttpMethod.POST, "/autenticacao").permitAll()
                     .antMatchers(HttpMethod.GET, "/videos/free").permitAll()
                     .anyRequest().authenticated()
@@ -78,8 +87,8 @@ public class SpringWebSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         UserDetails user = User.builder()
-                               .username("admin")
-                               .password(encoder.encode("challenge"))
+                               .username("admin@alura.com.br")
+                               .password(encoder.encode("challengebackend"))
                                .roles("ADM")
                                .build();
 
@@ -90,7 +99,12 @@ public class SpringWebSecurity extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {}
+    public void configure(WebSecurity web) {
+        web.ignoring().antMatchers(
+            "/h2-console",
+            "/h2-console/**",
+            "/swagger-ui/**");
+    }
 
     @Bean
     public AuthenticationEntryPoint authenticationEntryPoint(){
