@@ -7,10 +7,35 @@
   	<h1>Alura Challenge - Backend</h1>
 </div>
 <div>
-	<p align="center">
-		<a href="#desafios">Desafios</a> •
-	</p>
-</div>Projeto para o Alura Challenge - BackEnd
+    <details open="open">
+      <summary>Sumário</summary>
+      <ol>
+        <li>
+          <a href="#sobre-o-projeto">Sobre o projeto</a>
+          <ul>
+            <li><a href="#tecnologias">Tecnologias</a></li>
+          </ul>
+        </li>
+        <li><a href="#desafios">Desafios</a></li>
+      </ol>
+    </details>
+
+</div>Projeto Alura Challenge - BackEnd
+
+
+## Sobre o projeto
+Projeto desenvolvido para o <a href="https://www.alura.com.br/challenges/back-end/">Challenge Alura - Backend</a>
+
+## Tecnologias 
+- Java 8
+- JPA
+- Spring Data
+- Spring Security
+- JUnit
+- Lombok
+- H2 Database (banco em memória)
+- Bean Validation
+- Swagger 
 
 ## Desafios
 | Semana | Tarefa | Finalizado |
