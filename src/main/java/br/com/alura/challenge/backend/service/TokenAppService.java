@@ -13,10 +13,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 @Service
-@Profile(value = "prod")
 public class TokenAppService {
 
-	@Value("${aplicacao.chave.secreta}")
+	@Value("${aplicacao.chave.secreta:chave}")
 	private String aplicacaoChaveSecreta;
 
 	@Value("${aplicacao.token.duracao.milis:86400000}")

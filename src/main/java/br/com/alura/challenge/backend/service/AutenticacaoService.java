@@ -21,7 +21,6 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-@Profile("prod")
 public class AutenticacaoService implements UserDetailsService {
 
     public AutenticacaoService(UsuarioRepository usuarioRepository,

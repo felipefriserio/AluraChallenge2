@@ -3,6 +3,7 @@ package br.com.alura.challenge.backend.service;
 import br.com.alura.challenge.backend.entity.Usuario;
 import br.com.alura.challenge.backend.exceptions.AutenticacaoException;
 import br.com.alura.challenge.backend.repository.UsuarioRepository;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
