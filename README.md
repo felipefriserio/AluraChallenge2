@@ -81,6 +81,13 @@ A documentação da API pode ser vista no endpoint :
 /swagger-ui.html
 ```
 
+## H2 Database
+Para acessar o banco de dados em memória : 
+```
+/h2-console
+```
+
+
 ## Desafios
 | Semana | Tarefa | Finalizado |
 | :---:   | :---  | :---:  |
