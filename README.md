@@ -16,15 +16,16 @@
             <li><a href="#tecnologias">Tecnologias</a></li>
           </ul>
         </li>
+        <li><a href="#postman">Postman</a></li>
         <li><a href="#desafios">Desafios</a></li>
       </ol>
     </details>
 
-</div>Projeto Alura Challenge - BackEnd
+</div>
 
 
 ## Sobre o projeto
-Projeto desenvolvido para o <a href="https://www.alura.com.br/challenges/back-end/">Challenge Alura - Backend</a>
+Desenvolvimento de uma API REST de videos para o <a href="https://www.alura.com.br/challenges/back-end/">Challenge Alura - Backend</a>
 
 ## Tecnologias 
 - Java 8
@@ -36,6 +37,9 @@ Projeto desenvolvido para o <a href="https://www.alura.com.br/challenges/back-en
 - H2 Database (banco em memória)
 - Bean Validation
 - Swagger 
+
+# Postman
+É possível importar todas as requisições postaman da API. O arquivo se encontra em : src > main > java > data
 
 ## Desafios
 | Semana | Tarefa | Finalizado |
@@ -62,8 +66,6 @@ Projeto desenvolvido para o <a href="https://www.alura.com.br/challenges/back-en
 | 3 | Regra de negócio - Paginação -  Adicione nas requisições GET em ambos os modelos, tanto vídeos como categoria uma paginação que retorne 5 itens por página. Por exemplo: GET /videos/?page=2  | OK |
 | 3 | Autenticação - Para garantir a segurança dos dados, implemente algum tipo de autenticação, para que só os usuários autenticados possam acessar as rotas de GET, POST, PUT e DELETE. Caso a autenticação não seja válida, retornar uma mensagem informando Não autorizado ou Credenciais inválidas. Caso usuário e senha inválido, informar Usuário e senha inválido | OK | 
 | 3 | Regra de negócio - Requisição Free - Criar o seguinte endpoint com um número fixo de filmes disponível, sem a necessidade de autenticação: GET /videos/free | OK |
-
-
 
 Vídeo da semana 1 : 
 https://www.youtube.com/watch?v=UiQw2HM4DtM&ab_channel=AluraCursosOnline

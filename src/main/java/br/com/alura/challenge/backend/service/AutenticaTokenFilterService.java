@@ -19,7 +19,8 @@ import java.io.IOException;
 @Service
 public class AutenticaTokenFilterService extends OncePerRequestFilter {
 
-	public AutenticaTokenFilterService(TokenAppService tokenService, UsuarioRepository usuarioRepository) {
+	public AutenticaTokenFilterService(TokenAppService tokenService,
+									   UsuarioRepository usuarioRepository) {
 		this.tokenService = tokenService;
 		this.usuarioRepository = usuarioRepository;
 	}

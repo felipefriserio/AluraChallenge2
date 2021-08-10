@@ -1,7 +1,6 @@
 package br.com.alura.challenge.backend.config;
 
 import br.com.alura.challenge.backend.service.AutenticaTokenFilterService;
-import br.com.alura.challenge.backend.service.AutenticacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,9 +28,6 @@ public class SpringWebSecurity extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private Environment env;
-
-    @Autowired
-    private AutenticacaoService autenticacaoUsuario;
 
     @Autowired
     private AutenticaTokenFilterService autenticaToken;
