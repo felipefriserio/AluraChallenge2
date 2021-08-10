@@ -36,8 +36,7 @@ public class TokenAppService {
 		return token;
 	}
 
-	@SuppressWarnings("unused")
-	public boolean validarToken(String token) {
+	public boolean validar(String token) {
 		try {
 			Jws<Claims> claimsJws =
 							Jwts.parserBuilder()

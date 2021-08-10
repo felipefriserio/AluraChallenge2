@@ -1,10 +1,7 @@
 package br.com.alura.challenge.backend.service;
 
 import br.com.alura.challenge.backend.entity.Usuario;
-import br.com.alura.challenge.backend.exceptions.AutenticacaoException;
 import br.com.alura.challenge.backend.repository.UsuarioRepository;
-import org.springframework.context.annotation.Profile;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -32,7 +29,7 @@ public class AutenticaTokenFilterService extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		String token = capturarToken(request);
-		boolean seTokenValido = tokenService.validarToken(token);
+		boolean seTokenValido = tokenService.validar(token);
 		
 		if (seTokenValido) {
 			String username = tokenService.capturarNomeDoUsuario(token);

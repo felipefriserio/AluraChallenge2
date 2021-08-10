@@ -1,6 +1,7 @@
 package br.com.alura.challenge.backend.config;
 
 import br.com.alura.challenge.backend.service.AutenticaTokenFilterService;
+import br.com.alura.challenge.backend.service.AutenticacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,13 +36,22 @@ public class SpringWebSecurity extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
-    private static final String[] AUTH_WHITELIST = {
+    private static final String[] ENDPOINTS_SEM_AUTENTICACAO = {
             // SWAGGER
             "/v3/api-docs/**",
             "/swagger-ui/**",
+            "/swagger-ui.html"
             // H2
-            "/h2-console",
-            "/h2-console/**"
+            //"/h2-console",
+            //"/h2-console/**"
+    };
+
+    private static final String[] ENDPOINTS_POST_SEM_AUTENTICACAO = {
+            "/autenticacao"
+    };
+
+    private static final String[] ENDPOINTS_GET_SEM_AUTENTICACAO = {
+            "/videos/free"
     };
 
     @Override
@@ -59,11 +69,11 @@ public class SpringWebSecurity extends WebSecurityConfigurerAdapter {
     private void configuracaoDeProducao(HttpSecurity http) throws Exception {
         http
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
+                .and().csrf().disable()
                     .authorizeRequests()
-                    .antMatchers(AUTH_WHITELIST).permitAll()
-                    .antMatchers(HttpMethod.POST, "/autenticacao").permitAll()
-                    .antMatchers(HttpMethod.GET, "/videos/free").permitAll()
+                    .antMatchers(ENDPOINTS_SEM_AUTENTICACAO).permitAll()
+                    .antMatchers(HttpMethod.POST, ENDPOINTS_POST_SEM_AUTENTICACAO).permitAll()
+                    .antMatchers(HttpMethod.GET, ENDPOINTS_GET_SEM_AUTENTICACAO).permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint())
@@ -84,7 +94,7 @@ public class SpringWebSecurity extends WebSecurityConfigurerAdapter {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         UserDetails user = User.builder()
                                .username("admin@alura.com.br")
-                               .password(encoder.encode("challengebackend"))
+                               .password(encoder.encode("backend"))
                                .roles("ADM")
                                .build();
 
@@ -92,14 +102,6 @@ public class SpringWebSecurity extends WebSecurityConfigurerAdapter {
                 .dataSource(dataSource)
                 .passwordEncoder(encoder)
                 .withUser(user);
-    }
-
-    @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().antMatchers(
-            "/h2-console",
-            "/h2-console/**",
-            "/swagger-ui/**");
     }
 
     @Bean

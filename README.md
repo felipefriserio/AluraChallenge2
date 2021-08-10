@@ -19,7 +19,13 @@
         <li><a href="#subindo-a-app">Subindo a app</a></li>
         <li><a href="#postman">Postman</a></li>
         <li><a href="#desafios">Desafios</a></li>
-        <li><a href="#autenticacao">Autenticação</a></li>
+        <li>
+          <a href="#autenticacao">Autenticação</a>
+          <ul>
+            <li><a href="#gerando-o-token">Gerando o Token</a></li>
+            <li><a href="#usando-o-token">Usando o Token</a></li>
+          </ul>
+        </li>
       </ol>
     </details>
 </div>
@@ -39,23 +45,23 @@ Desenvolvimento de uma API REST de videos para o <a href="https://www.alura.com.
 - Swagger 
 
 # Subindo a app
-Comando maven para rodas os testes e subir a aplicação:
+Comando maven para rodar os testes e subir a aplicação:
 ```
 mvn test spring-boot:run
 ```
 
-# Postman
+## Postman
 É possível importar todas as requisições postaman da API. O arquivo se encontra em : src > main > java > data
 
-# Autenticacao
+## Autenticacao
 Com exceção do endpoint "/videos/free", para todos os outros endpoints é necessário enviar um token de autenticação.
 
 ## Gerando o token
 Envie uma requisição POST para o endpoint :
 ```
-/autenticação
+/autenticacao
 ```
-Com o seguinte JSON no body : 
+Com as seguintes credenciais JSON no body : 
 ```
 {
 "email" : "admin@alura.com.br",
@@ -68,6 +74,12 @@ Com o token em mãos, agora basta incluir um atributo 'Authorization' no header 
 
 Exemplo:
 <img src="https://github.com/felipefriserio/AluraChallenge2/blob/main/src/main/resources/static/requisicao.png" alt="requisicao">
+
+## Swagger
+A documentação da API pode ser vista no endpoint : 
+```
+/swagger-ui.html
+```
 
 ## Desafios
 | Semana | Tarefa | Finalizado |

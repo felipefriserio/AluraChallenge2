@@ -50,7 +50,7 @@ public class VideoService {
             throw new EntidadeNaoEncontradaException("VideoId= "+ id + " nao encontrado");
     }
 
-    public List<Video> listarFilmesGratuitos(){
+    public List<Video> listarFilmesGratuitos() {
         final int QUANTIDADE_FILMES_LIBERADOS = 2;
         VideoFiltro videoFiltro = new VideoFiltro();
         videoFiltro.setQuantidadeDeItensPorPagina(QUANTIDADE_FILMES_LIBERADOS);

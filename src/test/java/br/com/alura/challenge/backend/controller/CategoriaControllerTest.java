@@ -45,7 +45,6 @@ class CategoriaControllerTest {
     @MockBean
     private VideoService videoService;
 
-
     @Test
     void deveRetornar200_AoListar() throws Exception {
         Page<Categoria> categoriasPaginadas = mockarCategoriasPaginadas();
