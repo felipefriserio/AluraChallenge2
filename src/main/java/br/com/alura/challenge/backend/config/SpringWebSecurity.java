@@ -40,10 +40,10 @@ public class SpringWebSecurity extends WebSecurityConfigurerAdapter {
             // SWAGGER
             "/v3/api-docs/**",
             "/swagger-ui/**",
-            "/swagger-ui.html"
+            "/swagger-ui.html",
             // H2
-            //"/h2-console",
-            //"/h2-console/**"
+            "/h2-console",
+            "/h2-console/**"
     };
 
     private static final String[] ENDPOINTS_POST_SEM_AUTENTICACAO = {

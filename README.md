@@ -26,6 +26,8 @@
             <li><a href="#usando-o-token">Usando o Token</a></li>
           </ul>
         </li>
+        <li><a href="#swagger">Swagger</a></li>
+        <li><a href="#h2-database">H2 Database</a></li>
       </ol>
     </details>
 </div>
@@ -86,7 +88,6 @@ Para acessar o banco de dados em memória :
 ```
 /h2-console
 ```
-
 
 ## Desafios
 | Semana | Tarefa | Finalizado |
