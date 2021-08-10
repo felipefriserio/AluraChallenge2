@@ -16,13 +16,13 @@
             <li><a href="#tecnologias">Tecnologias</a></li>
           </ul>
         </li>
+        <li><a href="#subindo-a-app">Subindo a app</a></li>
         <li><a href="#postman">Postman</a></li>
         <li><a href="#desafios">Desafios</a></li>
+        <li><a href="#autenticacao">Autenticação</a></li>
       </ol>
     </details>
-
 </div>
-
 
 ## Sobre o projeto
 Desenvolvimento de uma API REST de videos para o <a href="https://www.alura.com.br/challenges/back-end/">Challenge Alura - Backend</a>
@@ -38,8 +38,36 @@ Desenvolvimento de uma API REST de videos para o <a href="https://www.alura.com.
 - Bean Validation
 - Swagger 
 
+# Subindo a app
+Comando maven para rodas os testes e subir a aplicação:
+```
+mvn test spring-boot:run
+```
+
 # Postman
 É possível importar todas as requisições postaman da API. O arquivo se encontra em : src > main > java > data
+
+# Autenticacao
+Com exceção do endpoint "/videos/free", para todos os outros endpoints é necessário enviar um token de autenticação.
+
+## Gerando o token
+Envie uma requisição POST para o endpoint :
+```
+/autenticação
+```
+Com o seguinte JSON no body : 
+```
+{
+"email" : "admin@alura.com.br",
+"senha" : "backend"
+}
+```
+
+## Usando o token
+Com o token em mãos, agora basta incluir um atributo 'Authorization' no header de cada requisição.
+
+Exemplo:
+<img src="https://github.com/felipefriserio/AluraChallenge2/blob/main/src/main/resources/static/requisicao.png" alt="requisicao">
 
 ## Desafios
 | Semana | Tarefa | Finalizado |
@@ -66,9 +94,6 @@ Desenvolvimento de uma API REST de videos para o <a href="https://www.alura.com.
 | 3 | Regra de negócio - Paginação -  Adicione nas requisições GET em ambos os modelos, tanto vídeos como categoria uma paginação que retorne 5 itens por página. Por exemplo: GET /videos/?page=2  | OK |
 | 3 | Autenticação - Para garantir a segurança dos dados, implemente algum tipo de autenticação, para que só os usuários autenticados possam acessar as rotas de GET, POST, PUT e DELETE. Caso a autenticação não seja válida, retornar uma mensagem informando Não autorizado ou Credenciais inválidas. Caso usuário e senha inválido, informar Usuário e senha inválido | OK | 
 | 3 | Regra de negócio - Requisição Free - Criar o seguinte endpoint com um número fixo de filmes disponível, sem a necessidade de autenticação: GET /videos/free | OK |
-
-Vídeo da semana 1 : 
-https://www.youtube.com/watch?v=UiQw2HM4DtM&ab_channel=AluraCursosOnline
 
 
 <!-- MARKDOWN LINKS-->
