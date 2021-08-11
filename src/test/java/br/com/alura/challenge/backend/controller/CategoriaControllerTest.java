@@ -2,8 +2,8 @@ package br.com.alura.challenge.backend.controller;
 
 import br.com.alura.challenge.backend.entity.Categoria;
 import br.com.alura.challenge.backend.entity.Video;
-import br.com.alura.challenge.backend.entity.dto.form.filter.CategoriaFiltro;
-import br.com.alura.challenge.backend.entity.dto.form.filter.VideoFiltro;
+import br.com.alura.challenge.backend.controllers.dto.form.filter.CategoriaFiltro;
+import br.com.alura.challenge.backend.controllers.dto.form.filter.VideoFiltro;
 import br.com.alura.challenge.backend.exceptions.EntidadeNaoEncontradaException;
 import br.com.alura.challenge.backend.service.CategoriaService;
 import br.com.alura.challenge.backend.service.VideoService;
@@ -17,6 +17,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -34,6 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 class CategoriaControllerTest {
 
     @Autowired

@@ -2,18 +2,22 @@ package br.com.alura.challenge.backend.controllers;
 
 import br.com.alura.challenge.backend.entity.Categoria;
 import br.com.alura.challenge.backend.entity.Video;
-import br.com.alura.challenge.backend.entity.dto.CategoriaDTO;
-import br.com.alura.challenge.backend.entity.dto.VideoDTO;
-import br.com.alura.challenge.backend.entity.dto.form.CategoriaInsertForm;
-import br.com.alura.challenge.backend.entity.dto.form.CategoriaUpdateForm;
-import br.com.alura.challenge.backend.entity.dto.form.filter.CategoriaFiltro;
-import br.com.alura.challenge.backend.entity.dto.form.filter.VideoFiltro;
-import br.com.alura.challenge.backend.entity.dto.paginacao.CategoriaPaginacaoDTO;
-import br.com.alura.challenge.backend.entity.dto.paginacao.VideoPaginacaoDTO;
+import br.com.alura.challenge.backend.controllers.dto.CategoriaDTO;
+import br.com.alura.challenge.backend.controllers.dto.VideoDTO;
+import br.com.alura.challenge.backend.controllers.dto.form.CategoriaInsertForm;
+import br.com.alura.challenge.backend.controllers.dto.form.CategoriaUpdateForm;
+import br.com.alura.challenge.backend.controllers.dto.form.filter.CategoriaFiltro;
+import br.com.alura.challenge.backend.controllers.dto.form.filter.VideoFiltro;
+import br.com.alura.challenge.backend.controllers.dto.paginacao.CategoriaPaginacaoDTO;
+import br.com.alura.challenge.backend.controllers.dto.paginacao.VideoPaginacaoDTO;
 import br.com.alura.challenge.backend.service.CategoriaService;
 import br.com.alura.challenge.backend.service.VideoService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -35,9 +39,12 @@ public class CategoriaController {
     private CategoriaService service;
     private VideoService videoService;
 
-    @CrossOrigin
     @GetMapping
-    public ResponseEntity<CategoriaPaginacaoDTO> listar(CategoriaFiltro filtro) {
+    @Cacheable(value = "listaDeCategorias")
+    public ResponseEntity<CategoriaPaginacaoDTO> listar(
+                            @PageableDefault(
+                                    sort = "id", direction = Sort.Direction.ASC,
+                                    page = 0, size = 5) CategoriaFiltro filtro) {
         log.debug("CategoriaController.listar - filtro= {}", filtro);
         Page<Categoria> categorias = service.listar(filtro);
         return ResponseEntity.ok(new CategoriaPaginacaoDTO(categorias));
@@ -60,7 +67,7 @@ public class CategoriaController {
         return ResponseEntity.ok(new CategoriaDTO(categoria));
     }
 
-    @CrossOrigin
+    @CacheEvict(value = "listaDeCategorias", allEntries = true)
     @PostMapping
     public ResponseEntity<CategoriaDTO> salvar(@RequestBody @Valid CategoriaInsertForm form, UriComponentsBuilder uriBuilder) {
         log.debug("CategoriaController.salvar - form= {}", form);
@@ -71,7 +78,7 @@ public class CategoriaController {
         return ResponseEntity.created(uri).body(new CategoriaDTO(categoria));
     }
 
-    @CrossOrigin
+    @CacheEvict(value = "listaDeCategorias", allEntries = true)
     @RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH})
     public ResponseEntity<CategoriaDTO> atualizar(@RequestBody @Valid CategoriaUpdateForm form) {
         log.debug("CategoriaController.atualizar - form= {}", form);
@@ -80,8 +87,8 @@ public class CategoriaController {
         return ResponseEntity.ok(new CategoriaDTO(categoria));
     }
 
-    @CrossOrigin
     @DeleteMapping(value = "/{id}")
+    @CacheEvict(value = "listaDeCategorias", allEntries = true)
     public ResponseEntity<CategoriaDTO> deletar(@PathVariable("id") Long id) {
         log.debug("CategoriaController.deletar - id= {}", id);
         service.deletar(id);

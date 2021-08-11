@@ -2,7 +2,7 @@ package br.com.alura.challenge.backend.repository.specification;
 
 import br.com.alura.challenge.backend.entity.Categoria;
 import br.com.alura.challenge.backend.entity.Video;
-import br.com.alura.challenge.backend.entity.dto.form.filter.VideoFiltro;
+import br.com.alura.challenge.backend.controllers.dto.form.filter.VideoFiltro;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.Join;

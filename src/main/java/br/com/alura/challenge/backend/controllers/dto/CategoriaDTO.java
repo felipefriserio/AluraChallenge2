@@ -1,4 +1,4 @@
-package br.com.alura.challenge.backend.entity.dto;
+package br.com.alura.challenge.backend.controllers.dto;
 
 import br.com.alura.challenge.backend.entity.Categoria;
 import com.fasterxml.jackson.annotation.JsonInclude;

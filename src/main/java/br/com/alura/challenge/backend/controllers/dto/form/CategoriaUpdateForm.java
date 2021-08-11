@@ -1,4 +1,4 @@
-package br.com.alura.challenge.backend.entity.dto.form;
+package br.com.alura.challenge.backend.controllers.dto.form;
 
 import br.com.alura.challenge.backend.entity.Categoria;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -7,11 +7,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
 @JsonAutoDetect
-public class CategoriaInsertForm {
+public class CategoriaUpdateForm {
+
+    @JsonProperty("id")
+    @NotNull(message = "id obrigatorio")
+    private Long id;
 
     @JsonProperty("titulo")
     @NotEmpty(message = "titulo obrigatorio")
@@ -23,14 +28,16 @@ public class CategoriaInsertForm {
 
     @Override
     public String toString() {
-        return "CategoriaInsertForm{" +
-                "titulo='" + titulo + '\'' +
+        return "CategoriaUpdateForm{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
                 ", cor='" + cor + '\'' +
                 '}';
     }
 
     public Categoria paraCategoria() {
         Categoria categoria = new Categoria();
+        categoria.setId(id);
         categoria.setTitulo(titulo);
         categoria.setCor(cor);
 

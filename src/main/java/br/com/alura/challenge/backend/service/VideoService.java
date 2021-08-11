@@ -1,7 +1,7 @@
 package br.com.alura.challenge.backend.service;
 
 import br.com.alura.challenge.backend.entity.Video;
-import br.com.alura.challenge.backend.entity.dto.form.filter.VideoFiltro;
+import br.com.alura.challenge.backend.controllers.dto.form.filter.VideoFiltro;
 import br.com.alura.challenge.backend.exceptions.EntidadeNaoEncontradaException;
 import br.com.alura.challenge.backend.repository.VideoRepository;
 import br.com.alura.challenge.backend.repository.specification.Especificacao;
@@ -9,7 +9,9 @@ import br.com.alura.challenge.backend.repository.specification.VideoEspecificaca
 import br.com.alura.challenge.backend.service.validacoes.video.ValidacaoVideo;
 import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -51,12 +53,12 @@ public class VideoService {
     }
 
     public List<Video> listarFilmesGratuitos() {
-        final int QUANTIDADE_FILMES_LIBERADOS = 2;
         VideoFiltro videoFiltro = new VideoFiltro();
-        videoFiltro.setQuantidadeDeItensPorPagina(QUANTIDADE_FILMES_LIBERADOS);
-        videoFiltro.setPagina(0);
-        Page<Video> paginacao = listar(videoFiltro);
-        return paginacao.getContent();
+        Pageable paginacao = PageRequest.of(0, 2, Sort.by("id"));
+        videoFiltro.setPaginacao(paginacao);
+
+        Page<Video> resultadoPaginado = listar(videoFiltro);
+        return resultadoPaginado.getContent();
     }
 
     @Transactional
@@ -86,6 +88,7 @@ public class VideoService {
         return video;
     }
 
+    @Transactional
     public void deletar(Long id) {
         Video video = encontrarPorId(id);
         deletar(video);

@@ -1,4 +1,4 @@
-package br.com.alura.challenge.backend.entity.dto.form;
+package br.com.alura.challenge.backend.controllers.dto.form;
 
 import br.com.alura.challenge.backend.entity.Video;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;

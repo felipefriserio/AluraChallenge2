@@ -1,12 +1,12 @@
 package br.com.alura.challenge.backend.controllers;
 
 import br.com.alura.challenge.backend.entity.Video;
-import br.com.alura.challenge.backend.entity.dto.RelatorioFilmesPorCategoriaDTO;
-import br.com.alura.challenge.backend.entity.dto.VideoDTO;
-import br.com.alura.challenge.backend.entity.dto.paginacao.VideoPaginacaoDTO;
-import br.com.alura.challenge.backend.entity.dto.form.filter.VideoFiltro;
-import br.com.alura.challenge.backend.entity.dto.form.VideoInsertForm;
-import br.com.alura.challenge.backend.entity.dto.form.VideoUpdateForm;
+import br.com.alura.challenge.backend.controllers.dto.RelatorioFilmesPorCategoriaDTO;
+import br.com.alura.challenge.backend.controllers.dto.VideoDTO;
+import br.com.alura.challenge.backend.controllers.dto.paginacao.VideoPaginacaoDTO;
+import br.com.alura.challenge.backend.controllers.dto.form.filter.VideoFiltro;
+import br.com.alura.challenge.backend.controllers.dto.form.VideoInsertForm;
+import br.com.alura.challenge.backend.controllers.dto.form.VideoUpdateForm;
 import br.com.alura.challenge.backend.service.VideoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -29,7 +29,6 @@ public class VideoController {
 
     private final VideoService service;
 
-    @CrossOrigin
     @GetMapping
     public ResponseEntity<VideoPaginacaoDTO> listar(VideoFiltro filtro) {
         log.info("VideoController.listar - filtro= {}", filtro);
@@ -37,7 +36,6 @@ public class VideoController {
         return ResponseEntity.ok(new VideoPaginacaoDTO(videos));
     }
 
-    @CrossOrigin
     @GetMapping(value = "/{id}")
     public ResponseEntity<VideoDTO> pegarUm(@PathVariable("id") Long id) {
         log.debug("VideoController.pegarUm - id= {}", id);
@@ -45,7 +43,6 @@ public class VideoController {
         return ResponseEntity.ok(new VideoDTO(video));
     }
 
-    @CrossOrigin
     @GetMapping(value = "/free")
     public ResponseEntity<List<VideoDTO>> listarFilmesGratuitos() {
         log.debug("VideoController.listarFilmesGratuitos");
@@ -53,7 +50,6 @@ public class VideoController {
         return ResponseEntity.ok(new VideoDTO().listarVideos(videosGratuitos));
     }
 
-    @CrossOrigin
     @PostMapping
     public ResponseEntity<VideoDTO> salvar(@RequestBody @Valid VideoInsertForm form, UriComponentsBuilder uriBuilder) {
         log.debug("VideoController.salvar - form= {}", form);
@@ -64,7 +60,6 @@ public class VideoController {
         return ResponseEntity.created(uri).body(new VideoDTO(video));
     }
 
-    @CrossOrigin
     @RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH})
     public ResponseEntity<VideoDTO> atualizar(@RequestBody @Valid VideoUpdateForm form) {
         log.debug("VideoController.atualizar - form= {}", form);
@@ -73,7 +68,7 @@ public class VideoController {
         return ResponseEntity.ok(new VideoDTO(video));
     }
 
-    @CrossOrigin
+
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<VideoDTO> deletar(@PathVariable("id") Long id) {
         log.debug("VideoController.deletar - id= {}", id);

@@ -1,10 +1,11 @@
-package br.com.alura.challenge.backend.service;
+package br.com.alura.challenge.backend.config.seguranca;
 
 import br.com.alura.challenge.backend.entity.Usuario;
 import br.com.alura.challenge.backend.repository.UsuarioRepository;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -12,12 +13,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
-@Service
-public class AutenticaTokenFilterService extends OncePerRequestFilter {
+public class AutenticacaoTokenFiltro extends OncePerRequestFilter {
 
-	public AutenticaTokenFilterService(TokenAppService tokenService,
-									   UsuarioRepository usuarioRepository) {
+	public AutenticacaoTokenFiltro(TokenAppService tokenService, UsuarioRepository usuarioRepository) {
 		this.tokenService = tokenService;
 		this.usuarioRepository = usuarioRepository;
 	}
@@ -31,15 +31,20 @@ public class AutenticaTokenFilterService extends OncePerRequestFilter {
 		String token = capturarToken(request);
 		boolean seTokenValido = tokenService.validar(token);
 		
-		if (seTokenValido) {
-			String username = tokenService.capturarNomeDoUsuario(token);
-			Usuario usuario = usuarioRepository.findByUsername(username).get();
-			
-			UsernamePasswordAuthenticationToken autenticacao = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
-			SecurityContextHolder.getContext().setAuthentication(autenticacao);
-		}
+		if (seTokenValido)
+			autenticarCliente(token);
 
 		filterChain.doFilter(request, response);
+	}
+
+	private void autenticarCliente(String token) {
+		Long idDoUsuario = tokenService.capturarIdDoUsuario(token);
+		Optional<Usuario> usuarioOptional = usuarioRepository.findById(idDoUsuario);
+		if (usuarioOptional.isPresent()) {
+			Usuario usuario = usuarioOptional.get();
+			Authentication autenticacao = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
+			SecurityContextHolder.getContext().setAuthentication(autenticacao);
+		}
 	}
 
 	private String capturarToken(HttpServletRequest request) {

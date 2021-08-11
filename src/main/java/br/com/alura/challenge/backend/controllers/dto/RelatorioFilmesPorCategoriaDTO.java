@@ -1,11 +1,11 @@
-package br.com.alura.challenge.backend.entity.dto;
+package br.com.alura.challenge.backend.controllers.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 public class RelatorioFilmesPorCategoriaDTO {
     private String titulo;

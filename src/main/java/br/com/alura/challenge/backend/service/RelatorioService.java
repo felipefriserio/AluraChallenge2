@@ -1,6 +1,6 @@
 package br.com.alura.challenge.backend.service;
 
-import br.com.alura.challenge.backend.entity.dto.RelatorioFilmesPorCategoriaDTO;
+import br.com.alura.challenge.backend.controllers.dto.RelatorioFilmesPorCategoriaDTO;
 import br.com.alura.challenge.backend.repository.VideoRepository;
 import org.springframework.stereotype.Service;
 

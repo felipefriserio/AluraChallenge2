@@ -1,4 +1,4 @@
-package br.com.alura.challenge.backend.entity.dto.form.filter;
+package br.com.alura.challenge.backend.controllers.dto.form.filter;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

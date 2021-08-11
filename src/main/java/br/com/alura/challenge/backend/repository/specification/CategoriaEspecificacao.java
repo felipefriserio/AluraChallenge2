@@ -1,6 +1,6 @@
 package br.com.alura.challenge.backend.repository.specification;
 
-import br.com.alura.challenge.backend.entity.dto.form.filter.CategoriaFiltro;
+import br.com.alura.challenge.backend.controllers.dto.form.filter.CategoriaFiltro;
 import org.springframework.data.jpa.domain.Specification;
 
 public class CategoriaEspecificacao implements Especificacao{

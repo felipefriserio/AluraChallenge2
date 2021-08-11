@@ -1,7 +1,7 @@
-package br.com.alura.challenge.backend.entity.dto.paginacao;
+package br.com.alura.challenge.backend.controllers.dto.paginacao;
 
 import br.com.alura.challenge.backend.entity.Categoria;
-import br.com.alura.challenge.backend.entity.dto.CategoriaDTO;
+import br.com.alura.challenge.backend.controllers.dto.CategoriaDTO;
 import lombok.Getter;
 import org.springframework.data.domain.Page;
 

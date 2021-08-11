@@ -1,6 +1,6 @@
 package br.com.alura.challenge.backend.controllers;
 
-import br.com.alura.challenge.backend.entity.dto.RelatorioFilmesPorCategoriaDTO;
+import br.com.alura.challenge.backend.controllers.dto.RelatorioFilmesPorCategoriaDTO;
 import br.com.alura.challenge.backend.service.RelatorioService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

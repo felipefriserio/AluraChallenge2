@@ -40,6 +40,7 @@ Desenvolvimento de uma API REST de videos para o <a href="https://www.alura.com.
 - JPA
 - Spring Data
 - Spring Security
+- Spring Cache
 - JUnit
 - Lombok
 - H2 Database (banco em memória)

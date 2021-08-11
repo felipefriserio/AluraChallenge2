@@ -1,6 +1,6 @@
 package br.com.alura.challenge.backend.config;
 
-import br.com.alura.challenge.backend.entity.dto.ApiExceptionDTO;
+import br.com.alura.challenge.backend.controllers.dto.ApiExceptionDTO;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;

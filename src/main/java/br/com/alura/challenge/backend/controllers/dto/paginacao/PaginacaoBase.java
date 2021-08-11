@@ -1,4 +1,4 @@
-package br.com.alura.challenge.backend.entity.dto.paginacao;
+package br.com.alura.challenge.backend.controllers.dto.paginacao;
 
 import lombok.Getter;
 
