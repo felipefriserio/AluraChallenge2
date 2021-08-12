@@ -37,9 +37,7 @@ public class ProdConfiguracoesDeSeguranca extends WebSecurityConfigurerAdapter {
             "/v3/api-docs/**",
             "/swagger-ui/**",
             "/swagger-ui.html",
-            // H2
-            "/h2-console", // remover para prod
-            "/h2-console/**" // remover para prod
+            "/health/**"
     };
 
     private static final String[] ENDPOINTS_POST_SEM_AUTENTICACAO = {

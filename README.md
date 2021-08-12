@@ -27,6 +27,7 @@
           </ul>
         </li>
         <li><a href="#swagger">Swagger</a></li>
+        <li><a href="#healthcheck">Healthcheck</a></li>
         <li><a href="#h2-database">H2 Database</a></li>
       </ol>
     </details>
@@ -41,6 +42,7 @@ Desenvolvimento de uma API REST de videos para o <a href="https://www.alura.com.
 - Spring Data
 - Spring Security
 - Spring Cache
+- Spring Actuator
 - JUnit
 - Lombok
 - H2 Database (banco em memória)
@@ -82,6 +84,12 @@ Exemplo:
 A documentação da API pode ser vista no endpoint : 
 ```
 /swagger-ui.html
+```
+
+## Healthcheck
+Fazer uma requisição GET para o endpoint :
+```
+/health
 ```
 
 ## H2 Database
