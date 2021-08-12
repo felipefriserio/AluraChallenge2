@@ -7,6 +7,7 @@ import br.com.alura.challenge.backend.controllers.dto.ApiExceptionDTO;
 import br.com.alura.challenge.backend.controllers.dto.AutenticacaoDTO;
 import br.com.alura.challenge.backend.controllers.dto.form.AutenticacaoForm;
 import br.com.alura.challenge.backend.config.seguranca.AutenticacaoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+@Slf4j
 @RestController
 @Profile(value = {"prod", "test"})
 @RequestMapping("/autenticacao")
@@ -37,6 +39,7 @@ public class AutenticacaoController {
 
     @PostMapping
     public ResponseEntity<?> autenticar(@RequestBody @Valid AutenticacaoForm form) {
+        log.debug("AutenticacaoController.autenticar");
         UsernamePasswordAuthenticationToken login = form.converter();
         Authentication autenticacao = authenticationManager.authenticate(login);
         String token = tokenAppService.gerarToken(autenticacao);

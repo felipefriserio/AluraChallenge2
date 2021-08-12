@@ -1,13 +1,15 @@
 package br.com.alura.challenge.backend.controllers.dto.form.filter;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-public class VideoFiltro extends FiltroBase {
+public class VideoFiltro {
     public VideoFiltro(Long categoriaId) {
         this.categoriaId = categoriaId;
     }
@@ -17,15 +19,5 @@ public class VideoFiltro extends FiltroBase {
     private String descricao;
     private String url;
     private Long categoriaId;
-
-    @Override
-    public String toString() {
-        return "VideoFiltro{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", url='" + url + '\'' +
-                ", categoriaId=" + categoriaId +
-                '}';
-    }
+    private Pageable paginacao = PageRequest.of(0,5);
 }

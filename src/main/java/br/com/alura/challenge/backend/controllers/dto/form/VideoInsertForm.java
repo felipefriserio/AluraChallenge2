@@ -4,15 +4,14 @@ import br.com.alura.challenge.backend.entity.Categoria;
 import br.com.alura.challenge.backend.entity.Video;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.URL;
 
 import javax.validation.constraints.NotEmpty;
 
-@Getter
-@Setter
-@JsonAutoDetect
+@Data
 public class VideoInsertForm {
 
     @JsonProperty("titulo")
@@ -30,16 +29,6 @@ public class VideoInsertForm {
 
     @JsonProperty("categoriaId")
     private Long categoriaId = 0l;
-
-    @Override
-    public String toString() {
-        return "VideoInsertForm{" +
-                "titulo='" + titulo + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", url='" + url + '\'' +
-                ", categoriaId=" + categoriaId +
-                '}';
-    }
 
     public Video paraVideo() {
         Categoria categoria = new Categoria();

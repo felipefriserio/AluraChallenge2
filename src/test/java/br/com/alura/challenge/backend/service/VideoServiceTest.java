@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
@@ -34,7 +35,7 @@ class VideoServiceTest {
     @Test
     void deveRetornarPaginacaoDeVideos_listar() {
         Page<Video> videosPaginados = mockarVideosPaginados();
-        when(repository.findAll(any(), any(Pageable.class))).thenReturn(videosPaginados);
+        when(repository.findAll(any(Specification.class), any(Pageable.class))).thenReturn(videosPaginados);
 
         Page<Video> paginacao = service.listar(new VideoFiltro());
 

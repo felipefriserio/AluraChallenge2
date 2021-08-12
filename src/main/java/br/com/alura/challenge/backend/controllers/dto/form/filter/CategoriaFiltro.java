@@ -1,24 +1,17 @@
 package br.com.alura.challenge.backend.controllers.dto.form.filter;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
-@Getter
-@Setter
-public class CategoriaFiltro extends FiltroBase {
+@Data
+public class CategoriaFiltro {
 
     private Long id;
     private String titulo;
     private String cor;
     private Long categoriaId;
-
-    @Override
-    public String toString() {
-        return "CategoriaFiltro{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-                ", cor='" + cor + '\'' +
-                ", categoriaId=" + categoriaId +
-                '}';
-    }
+    private Pageable paginacao = PageRequest.of(0,5);
 }

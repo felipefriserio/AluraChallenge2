@@ -25,7 +25,7 @@ public class RelatorioContoller {
     @CrossOrigin
     @GetMapping(value = "/categorias")
     public ResponseEntity<List<RelatorioFilmesPorCategoriaDTO>> gerarRelatorio() {
-        log.info("RelatorioContoller.gerarRelatorio");
+        log.debug("RelatorioContoller.gerarRelatorio");
         List<RelatorioFilmesPorCategoriaDTO> relatorio = service.gerarRelatorioFilmePorCategoria();
         return ResponseEntity.ok(relatorio);
     }

@@ -3,6 +3,7 @@ package br.com.alura.challenge.backend.controllers.dto.form;
 import br.com.alura.challenge.backend.entity.Video;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.URL;
@@ -10,9 +11,7 @@ import org.hibernate.validator.constraints.URL;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-@Getter
-@Setter
-@JsonAutoDetect
+@Data
 public class VideoUpdateForm {
 
     @JsonProperty("id")
@@ -31,16 +30,6 @@ public class VideoUpdateForm {
     @URL(message = "url invalida")
     @NotEmpty(message = "url obrigatorio")
     private String url;
-
-    @Override
-    public String toString() {
-        return "VideoUpdateForm{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", url='" + url + '\'' +
-                '}';
-    }
 
     public Video paraVideo() {
         Video video = new Video();

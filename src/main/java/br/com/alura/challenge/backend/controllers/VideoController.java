@@ -31,7 +31,7 @@ public class VideoController {
 
     @GetMapping
     public ResponseEntity<VideoPaginacaoDTO> listar(VideoFiltro filtro) {
-        log.info("VideoController.listar - filtro= {}", filtro);
+        log.debug("VideoController.listar - filtro= {}", filtro);
         Page<Video> videos = service.listar(filtro);
         return ResponseEntity.ok(new VideoPaginacaoDTO(videos));
     }
