@@ -59,7 +59,7 @@ class VideoControllerTest {
 
     @Test
     void deveRetornar200_EncontrarPorId() throws Exception {
-        Long id = 1l;
+        Long id = 1L;
         Video video = mockarUmVideo();
         when(service.encontrarPorId(id))
                .thenReturn(video);
@@ -74,7 +74,7 @@ class VideoControllerTest {
 
     @Test
     void deveRetornar404_EncontrarVideoInexistente() throws Exception {
-        Long id = -1l;
+        Long id = -1L;
         Throwable throwable = new EntidadeNaoEncontradaException("VideoId= "+ id +" nao encontrado");
         when(service.encontrarPorId(id))
                .thenThrow(throwable);
@@ -295,7 +295,7 @@ class VideoControllerTest {
 
     @Test
     void deveRetornar404_AposTentarAtualizarVideoInexistente() throws Exception {
-        Throwable throwable = new EntidadeNaoEncontradaException("VideoId= "+ -1l + " nao encontrado");
+        Throwable throwable = new EntidadeNaoEncontradaException("VideoId= "+ -1L + " nao encontrado");
         Video video = mockarUmVideo();
         String json = toJson(video);
 
@@ -314,7 +314,7 @@ class VideoControllerTest {
 
     @Test
     void deveRetornar200_AposDeletarUmVideo() throws Exception {
-        Long id = 1l;
+        Long id = 1L;
         mockMvc.perform(MockMvcRequestBuilders.delete("/videos/{id}", id))
                     .andDo(print())
                     .andExpect(status().isOk());
@@ -324,7 +324,7 @@ class VideoControllerTest {
 
     @Test
     void deveRetornar404_AposTentarDeletarUmVideoInexistente() throws Exception {
-        Long id = -1l;
+        Long id = -1L;
         Throwable throwable = new EntidadeNaoEncontradaException("VideoId= "+ id + " nao encontrado");
 
         doThrow(throwable).when(service).deletar(any(Long.class));
@@ -347,7 +347,7 @@ class VideoControllerTest {
     }
 
     private Video mockarUmVideo() {
-        Categoria categoria = new Categoria(1l,"LIVRE", "#000000");
+        Categoria categoria = new Categoria(1L,"LIVRE", "#000000");
         Video video = new Video(1l,"video","descricao do video", "http://www.site.com.br", categoria);
         return video;
     }

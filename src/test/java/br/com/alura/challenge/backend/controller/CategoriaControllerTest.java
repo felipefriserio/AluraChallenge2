@@ -64,7 +64,7 @@ class CategoriaControllerTest {
 
     @Test
     void deveRetornar200_AoListarVideosPorCategoria() throws Exception {
-        Long categoriaId = 1l;
+        Long categoriaId = 1L;
         Page<Video> videosPaginados = mockarVideosPaginados();
         when(videoService.listar(any(VideoFiltro.class)))
                          .thenReturn(videosPaginados);
@@ -78,7 +78,7 @@ class CategoriaControllerTest {
 
     @Test
     void deveRetornar200_EncontrarPorId() throws Exception {
-        Long id = 1l;
+        Long id = 1L;
         Categoria categoria = mockarUmaCategoria();
         when(service.encontrarPorId(id))
                     .thenReturn(categoria);
@@ -92,7 +92,7 @@ class CategoriaControllerTest {
 
     @Test
     void deveRetornar404_EncontrarCategoriaInexistente() throws Exception {
-        Long id = -1l;
+        Long id = -1L;
         Throwable throwable = new EntidadeNaoEncontradaException("CategoriaId " + id + " nao encontrado");
         when(service.encontrarPorId(id))
                     .thenThrow(throwable);
@@ -180,7 +180,7 @@ class CategoriaControllerTest {
 
     @Test
     void deveRetornar404_AposTentarAtualizarCategoriaInexistente() throws Exception {
-        Long id = -1l;
+        Long id = -1L;
         Throwable throwable = new EntidadeNaoEncontradaException("CategoriaId " + id + " nao encontrado");
         Categoria categoria = mockarUmaCategoria();
         categoria.setId(id);
@@ -258,7 +258,7 @@ class CategoriaControllerTest {
 
     @Test
     void deveRetornar200_AposDeletarUmaCategoria() throws Exception {
-        Long id = 1l;
+        Long id = 1L;
         mockMvc.perform(MockMvcRequestBuilders.delete("/categorias/{id}", id))
                 .andDo(print())
                 .andExpect(status().isOk());
@@ -268,7 +268,7 @@ class CategoriaControllerTest {
 
     @Test
     void deveRetornar404_AposTentarDeletarUmaCategoriaInexistente() throws Exception {
-        Long id = -1l;
+        Long id = -1L;
         Throwable throwable = new EntidadeNaoEncontradaException("CategoriaId " + id + " nao encontrado");
         doThrow(throwable).when(service).deletar(any(Long.class));
 
@@ -296,13 +296,13 @@ class CategoriaControllerTest {
     }
 
     private Categoria mockarUmaCategoria() {
-        Categoria categoria = new Categoria(1l,"LIVRE", "#000000");
+        Categoria categoria = new Categoria(1L,"LIVRE", "#000000");
         return categoria;
     }
 
     private Video mockarUmVideo() {
         Categoria categoria = mockarUmaCategoria();
-        Video video = new Video(1l,"video","descricao do video", "http://www.site.com.br", categoria);
+        Video video = new Video(1L,"video","descricao do video", "http://www.site.com.br", categoria);
         return video;
     }
 
