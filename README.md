@@ -17,6 +17,7 @@
           </ul>
         </li>
         <li><a href="#subindo-a-app">Subindo a app</a></li>
+        <li><a href="#endereco-da-aplicacao-heroku">Endereco da aplicacao Heroku</a></li>
         <li><a href="#postman">Postman</a></li>
         <li><a href="#desafios">Desafios</a></li>
         <li>
@@ -54,6 +55,9 @@ Comando maven para rodar os testes e subir a aplicação:
 ```
 mvn test spring-boot:run
 ```
+
+## Endereco da aplicacao Heroku
+https://alura-challenge.herokuapp.com
 
 ## Postman
 É possível importar todas as requisições postaman da API. O arquivo se encontra em : src > main > java > data
